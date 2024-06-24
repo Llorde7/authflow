@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import Metrics from '@/components/Metrics';
 import MetricsGraph from '@/components/MetricsGraph';
 import { redirect } from 'next/navigation';
-import { createClient } from '@/utils/supabase/server'
+import { createClient } from '@/utils/supabase/client'
 
 const Dashboard = () => {
   const [filter, setFilter] = useState('weekly');
@@ -33,7 +33,7 @@ const Dashboard = () => {
         <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.7s]"></div> 
       </div>
     </div>
-  
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-100">
       <h1 className="text-4xl font-bold mb-8">Dairy Cooperative Dashboard</h1>

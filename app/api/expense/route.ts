@@ -23,16 +23,22 @@ export async function GET(request: Request) {
     default:
       fromDate = new Date(0); // all time
   }
+  const { data: {user}} = await supabase.auth.getUser();
+  if(!user){
+    console.log('No user logged in')
+    return;
+  }
 
   const { data, error } = await supabase
     .from('expenses')
     .select('amount, payment_date')
+    .eq('user_id',user.id)
     .gte('payment_date', fromDate.toISOString());
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.log(error)
   }
 
-  const totalExpense = data.reduce((acc, curr) => acc + curr.amount, 0);
-  return NextResponse.json({ totalExpense, data });
+  /*const totalExpense = data.reduce((acc, curr) => acc + curr.amount, 0);
+  return NextResponse.json({ totalExpense, data });*/
 }

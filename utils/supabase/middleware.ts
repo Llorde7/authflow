@@ -54,7 +54,7 @@ export async function updateSession(request: NextRequest) {
         }
     )
 
-    const {data: {user}} = await supabase.auth.getUser()
+    /*const {data: {user}} = await supabase.auth.getUser()
 
     if (request.nextUrl.pathname.startsWith('/dashboard') && !user) {
         return NextResponse.redirect(new URL('/login', request.url))
@@ -65,5 +65,5 @@ export async function updateSession(request: NextRequest) {
     }
 
 
-    return response
+    return response*/
 }
